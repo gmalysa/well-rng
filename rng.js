@@ -130,13 +130,13 @@ WELL.prototype.randInt = function(a, b) {
  * the generator, where possible. This is must faster for generating powers of 2
  * than using randInt().
  * @param bits Number of bits to obtain
+ * @return Random integer consisting of only the given number of bits
  */
 WELL.prototype.randBits = function(bits) {
 	var mask = (1 << bits) - 1;
 	var unshift = 0;
 	
 	if (bits + this.next_bit < 32) {
-		mask = mask << this.next_bit;
 		unshift = this.next_bit;
 		this.next_bit += bits;
 	}
@@ -145,7 +145,7 @@ WELL.prototype.randBits = function(bits) {
 		this.next_bit = bits;
 	}
 	
-	return (this.bit_state & mask) >> unshift;
+	return (this.bit_state >> unshift) & mask;
 }
 
 module.exports = WELL;
