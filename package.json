@@ -1,0 +1,13 @@
+{
+  "name"          : "well-rng",
+  "version"       : "1.0.0",
+  "description"   : "Lightweight, fast implementation of the WELL-1024a PRNG",
+  "keywords"      : ["prng", "rng", "well", "well-1024a"],
+  "author"        : "Greg Malysa <gmalysa@stanford.edu>",
+  "repository"    : { "type" : "git", "url" : "https://github.com/gmalysa/well-rng.git" },
+  "licenses"      : ["MIT"],
+  "main"          : "./rng",
+  "dependencies"  : { },
+  "devDependencies" : { },
+  "engines"       : { "node": "> 0.8.0" }
+}
