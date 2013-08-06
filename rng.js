@@ -139,7 +139,7 @@ WELL.prototype.randBits = function(bits) {
 	var mask = (1 << bits) - 1;
 	var unshift = 0;
 	
-	if (bits + this.next_bit < 32) {
+	if (bits + this.next_bit <= 32) {
 		unshift = this.next_bit;
 		this.next_bit += bits;
 	}
