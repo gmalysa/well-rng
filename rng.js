@@ -144,7 +144,7 @@ WELL.prototype.randBits = function(bits) {
 		this.next_bit += bits;
 	}
 	else {
-		this.bit_state = WELL.prototype.rand.call(this);
+		this.bit_state = WELL.prototype.rand.call(this, true);
 		this.next_bit = bits;
 	}
 	
