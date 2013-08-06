@@ -101,3 +101,29 @@ for (var i = 0; i < iter; ++i) {
 var stop = process.hrtime(start);
 var time = (stop[0]*1e9 + stop[1])/1e6;
 console.log('(T4/(random()*spread)|0) Math took '+time+' ms');
+
+/*********
+ * TEST 5
+ * Generating a float on (-1, 1), which is necessary to generate normals.
+ * Math.random() technically loses an additional bit here, while WELL
+ * does not, so if you wanted to reincorporate it, it would incur
+ * additional time costs for Math.random()
+ ********/
+console.log('');
+var start = process.hrtime();
+for (var i = 0; i < iter; ++i) {
+	var result = rng.random(true);
+}
+var stop = process.hrtime(start);
+var time = (stop[0]*1e9 + stop[1])/1e6;
+console.log('(T5/random(true)) WELL took '+time+' ms');
+
+var start = process.hrtime();
+for (var i = 0; i < iter; ++i) {
+	var result = (Math.random()-0.5)*2;
+}
+var stop = process.hrtime(start);
+var time = (stop[0]*1e9 + stop[1])/1e6;
+console.log('(T5/(random()-0.5)*2) Math took '+time+' ms');
+
+

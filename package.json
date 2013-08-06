@@ -1,6 +1,6 @@
 {
   "name"          : "well-rng",
-  "version"       : "1.0.0",
+  "version"       : "1.0.1",
   "description"   : "Lightweight, fast implementation of the WELL-1024a PRNG",
   "keywords"      : ["prng", "rng", "well", "well-1024a"],
   "author"        : "Greg Malysa <gmalysa@stanford.edu>",

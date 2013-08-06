@@ -73,11 +73,12 @@ WELL.prototype.set_state = function(state, sp) {
 }
 
 /**
- * Retrieve a random integer from 0 to 2^31-1, mostly used
- * internally. Would prefer unsigned integers :/
+ * Retrieve a random integer from either 0 to 2^31-1 or -2^31 to 2^31-1, depending
+ * on the argument given (none implies positive only)
+ * @param incNeg (optional) If a truthy value, includes negative values in the output
  * @return int
  */
-WELL.prototype.rand = function() {
+WELL.prototype.rand = function(incNeg) {
 	var _state = this._state;
 	var _n = this._n;
 
@@ -105,15 +106,17 @@ WELL.prototype.rand = function() {
 	this._n = _n = (_n + 31) & 31;
 	_state[_n] = (z0 ^ (z0 << 11) ^ z1 ^ (z1 << 7) ^ z2 ^ (z2 << 13));
 
-	return _state[_n] & WELL.prototype.positive_mask;
+	return (incNeg ? _state[_n] : (_state[_n] & WELL.prototype.positive_mask));
 }
 
 /**
- * Retrieve a random float on the interval [0, 1)
+ * Retrieve a random float on the interval [0, 1) or (-1, 1) if the argument is
+ * given
+ * @param incNeg (optional) If a truthy value, includes negative values in output
  * @return float
  */
-WELL.prototype.random = function() {
-	return WELL.prototype.rand.call(this) * WELL.prototype.scale;
+WELL.prototype.random = function(incNeg) {
+	return WELL.prototype.rand.call(this, incNeg) * WELL.prototype.scale;
 }
 
 /**
